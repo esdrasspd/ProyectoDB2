@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\serho\\src\\ProyectoDB2\\ProyectoDB2\\ProyectoDB2.csproj": {}
+    "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\ProyectoDB2.csproj": {}
   },
   "projects": {
-    "C:\\Users\\serho\\src\\ProyectoDB2\\ProyectoDB2\\ProyectoDB2.csproj": {
+    "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\ProyectoDB2.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\serho\\src\\ProyectoDB2\\ProyectoDB2\\ProyectoDB2.csproj",
+        "projectUniqueName": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\ProyectoDB2.csproj",
         "projectName": "ProyectoDB2",
-        "projectPath": "C:\\Users\\serho\\src\\ProyectoDB2\\ProyectoDB2\\ProyectoDB2.csproj",
-        "packagesPath": "C:\\Users\\serho\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\serho\\src\\ProyectoDB2\\ProyectoDB2\\obj\\",
+        "projectPath": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\ProyectoDB2.csproj",
+        "packagesPath": "C:\\Users\\rooxe\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\serho\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\rooxe\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -39,11 +38,22 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.16, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -63,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

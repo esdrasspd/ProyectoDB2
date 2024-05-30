@@ -1,0 +1,88 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{E1FFDBE5-1698-4A90-9274-A60B1025205C}|ProyectoDB2\\ProyectoDB2.csproj|c:\\users\\rooxe\\onedrive\\documentos\\repositorios\\proyectodb2\\proyectodb2\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{E1FFDBE5-1698-4A90-9274-A60B1025205C}|ProyectoDB2\\ProyectoDB2.csproj|solutionrelative:proyectodb2\\views\\login\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1FFDBE5-1698-4A90-9274-A60B1025205C}|ProyectoDB2\\ProyectoDB2.csproj|c:\\users\\rooxe\\onedrive\\documentos\\repositorios\\proyectodb2\\proyectodb2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1FFDBE5-1698-4A90-9274-A60B1025205C}|ProyectoDB2\\ProyectoDB2.csproj|solutionrelative:proyectodb2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1FFDBE5-1698-4A90-9274-A60B1025205C}|ProyectoDB2\\ProyectoDB2.csproj|c:\\users\\rooxe\\onedrive\\documentos\\repositorios\\proyectodb2\\proyectodb2\\models\\usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1FFDBE5-1698-4A90-9274-A60B1025205C}|ProyectoDB2\\ProyectoDB2.csproj|solutionrelative:proyectodb2\\models\\usuarios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E1FFDBE5-1698-4A90-9274-A60B1025205C}|ProyectoDB2\\ProyectoDB2.csproj|c:\\users\\rooxe\\onedrive\\documentos\\repositorios\\proyectodb2\\proyectodb2\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E1FFDBE5-1698-4A90-9274-A60B1025205C}|ProyectoDB2\\ProyectoDB2.csproj|solutionrelative:proyectodb2\\controllers\\logincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\Program.cs",
+              "RelativeDocumentMoniker": "ProyectoDB2\\Program.cs",
+              "ToolTip": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\Program.cs",
+              "RelativeToolTip": "ProyectoDB2\\Program.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAB0AAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T17:09:56.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Usuarios.cs",
+              "DocumentMoniker": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\Models\\Usuarios.cs",
+              "RelativeDocumentMoniker": "ProyectoDB2\\Models\\Usuarios.cs",
+              "ToolTip": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\Models\\Usuarios.cs",
+              "RelativeToolTip": "ProyectoDB2\\Models\\Usuarios.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T17:08:17.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\Views\\Login\\Login.cshtml",
+              "RelativeDocumentMoniker": "ProyectoDB2\\Views\\Login\\Login.cshtml",
+              "ToolTip": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\Views\\Login\\Login.cshtml",
+              "RelativeToolTip": "ProyectoDB2\\Views\\Login\\Login.cshtml",
+              "ViewState": "AQIAACQAAAAAAAAAAAAAADkAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-05-30T17:03:59.334Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "LoginController.cs",
+              "DocumentMoniker": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\Controllers\\LoginController.cs",
+              "RelativeDocumentMoniker": "ProyectoDB2\\Controllers\\LoginController.cs",
+              "ToolTip": "C:\\Users\\rooxe\\OneDrive\\Documentos\\Repositorios\\ProyectoDB2\\ProyectoDB2\\Controllers\\LoginController.cs",
+              "RelativeToolTip": "ProyectoDB2\\Controllers\\LoginController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-30T17:00:55.284Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
