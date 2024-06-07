@@ -1,83 +1,65 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ProyectoDB2.Models;
+using ProyectoDB2.Services;
 
 namespace ProyectoDB2.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly LoginService _loginService;
+
+        public LoginController(LoginService loginService)
+        {
+            _loginService = loginService;
+        }
+
         // GET: LoginController
-        public ActionResult Login()
+        public IActionResult Login()
         {
             return View();
         }
 
-        // GET: LoginController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: LoginController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: LoginController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public IActionResult Login(LoginModel model)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
+                var (success, roleId) = _loginService.LoginUser(model.Username, model.Password);
+
+                if(success)
+                {
+                    if (roleId.HasValue)
+                    {
+                        if (roleId == 1)
+                        {
+                            HttpContext.Session.SetString("Username", model.Username);
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else if (roleId == 2)
+                        {
+                            HttpContext.Session.SetString("Username", model.Username);
+                            return RedirectToAction("Index", "Vendedor");
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, "Rol no válido");
+                        }
+                    }
+                } else
+                {
+                    ModelState.AddModelError(string.Empty, "Usuario o contraseña incorrectos");
+                }
+
+                
+            } catch (Exception e)
             {
-                return View();
+                ModelState.AddModelError(string.Empty, "Error al intentar iniciar sesión" + e.Message);
+                return View(model);
             }
+            return View(model);
+            
         }
 
-        // GET: LoginController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: LoginController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: LoginController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: LoginController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
