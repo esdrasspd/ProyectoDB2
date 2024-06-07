@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ProyectoDB2.Models.AdminModel>
+
+@{
+    ViewBag.Title = "Admin Index";
+}
+
+<h1>Admin Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Nombre</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var admin in Model)
+        {
+            <tr>
+                <td>@admin.Id</td>
+                <td>@admin.Name</td>
+                <td>
+                    <a href="@Url.Action("Details", new { id = admin.Id })">Details</a> |
+                    <a href="@Url.Action("Edit", new { id = admin.Id })">Edit</a> |
+                    <a href="@Url.Action("Delete", new { id = admin.Id })">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Create")" class="btn btn-primary">Create New</a>

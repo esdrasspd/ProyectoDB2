@@ -1,0 +1,23 @@
+﻿@model ProyectoDB2.Models.AdminModel
+
+@{
+    ViewBag.Title = "Admin Details";
+}
+
+<h1>Admin Details</h1>
+
+<div>
+    <h4>Admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>ID</dt>
+        <dd>@Model.Id</dd>
+        <dt>Name</dt>
+        <dd>@Model.Name</dd>
+    </dl>
+</div>
+
+<p>
+    <a href="@Url.Action("Edit", new { id = Model.Id })">Edit</a> |
+    <a href="@Url.Action("Index")">Back to List</a>
+</p>
