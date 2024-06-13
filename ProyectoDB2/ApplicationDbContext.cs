@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using ProyectoDB2.Controllers;
 using ProyectoDB2.Entityes;
 using ProyectoDB2.Models;
 using System.Data;
@@ -18,6 +19,7 @@ namespace ProyectoDB2
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<TipoProductoDTO>().HasNoKey();
             modelBuilder.Entity<ProductModelSP>().HasKey(p => p.Referencia); // Configurar Referencia como clave primaria
         }
 
