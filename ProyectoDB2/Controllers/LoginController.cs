@@ -1,17 +1,22 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoDB2.Models;
 using ProyectoDB2.Services;
+using System.Security.Claims;
 
 namespace ProyectoDB2.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly LoginService _loginService;
 
-        public LoginController(LoginService loginService)
+        public LoginController(LoginService loginService, IHttpContextAccessor httpContextAccessor)
         {
             _loginService = loginService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         // GET: LoginController
@@ -31,15 +36,22 @@ namespace ProyectoDB2.Controllers
                 {
                     if (roleId.HasValue)
                     {
+                        var claims = new List<Claim>
+                        {
+                            new Claim(ClaimTypes.Name, model.Username),
+                            new Claim(ClaimTypes.Role, roleId.ToString())
+                        };
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
                         if (roleId == 1)
                         {
-                            HttpContext.Session.SetString("Username", model.Username);
-                            return RedirectToAction("Index", "Home");
+                            _httpContextAccessor.HttpContext.Session.SetString("UsernameAdmin", model.Username);
+                            return RedirectToAction("Index", "Admin");
                         }
                         else if (roleId == 2)
                         {
-                            HttpContext.Session.SetString("Username", model.Username);
-                            return RedirectToAction("Index", "Vendedor");
+                            _httpContextAccessor.HttpContext.Session.SetString("UsernameClient", model.Username);
+                            return RedirectToAction("Index", "Home");
                         }
                         else
                         {
@@ -59,6 +71,13 @@ namespace ProyectoDB2.Controllers
             }
             return View(model);
             
+        }
+
+        public IActionResult Logout()
+        {
+            HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            _httpContextAccessor.HttpContext.Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
     }
