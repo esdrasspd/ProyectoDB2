@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoDB2.DTOs;
+using ProyectoDB2.Entityes;
+using System.Drawing;
 
 namespace ProyectoDB2.Controllers
 {
@@ -31,20 +33,25 @@ namespace ProyectoDB2.Controllers
 		// GET: Producto/Create
 		public ActionResult Create()
 		{
+			ViewBag.TiposProductos = TiposProductos();
 			return View();
 		}
 
 		// POST: Producto/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+		public ActionResult Create(Producto producto)
 		{
 			try
 			{
+				_context.Database.ExecuteSqlRaw("exec sp_AgregarProducto @p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11", producto.Referencia,
+										producto.Nombre, producto.Descripcion, producto.IdTipoProducto, producto.Material, producto.Alto, producto.Ancho, producto.Profundidad, producto.Color, producto.Peso, producto.Foto, producto.Stock, producto.Precio);
+
 				return RedirectToAction(nameof(Index));
 			}
-			catch
+			catch(Exception ex)
 			{
+				ViewBag.TiposProductos = TiposProductos();
 				return View();
 			}
 		}
@@ -97,6 +104,12 @@ namespace ProyectoDB2.Controllers
 		{
 			var producto = _context.Set<ProductoDTO>().FromSqlRaw("exec sp_ConsultarProductos @p0", id).ToList();
 			return producto[0];
+		}
+
+		private List<TipoProductoDTO> TiposProductos()
+		{
+			var query = _context.Set<TipoProductoDTO>().FromSqlRaw("exec sp_ConsultarTipoProducto").ToList();
+			return query;
 		}
 	}
 }
