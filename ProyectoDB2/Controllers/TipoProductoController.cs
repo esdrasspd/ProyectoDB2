@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using ProyectoDB2.DTOs;
 using System.Data;
 
 namespace ProyectoDB2.Controllers
@@ -91,12 +92,5 @@ namespace ProyectoDB2.Controllers
                 return View();
             }
         }
-    }
-    
-
-    public class TipoProductoDTO
-    {
-        public int Id { get; set; }
-        public string Nombre { get; set; } = "";
     }
 }

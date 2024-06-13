@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using ProyectoDB2.Controllers;
+using ProyectoDB2.DTOs;
 using ProyectoDB2.Entityes;
 using ProyectoDB2.Models;
 using System.Data;
