@@ -77,7 +77,7 @@ namespace ProyectoDB2.Controllers
         public ActionResult Delete(int id)
         {
             var producto = _context.Set<TipoProductoDTO>().FromSqlRaw("exec sp_ConsultarTipoProducto @p0", id).ToList();
-            return View();
+            return View(producto);
         }
 
         // POST: TipoProductoController/Delete/5
