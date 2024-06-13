@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Carrito de Compras";
+}
+<div class="container">
+    <h1>Carrito de Compras</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Referencia</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.Referencia</td>
+                    <td>@item.Nombre</td>
+                    <td>Q @item.Precio.ToString("F2")</td>
+                    <td>@item.Cantidad</td>
+                    <td>@((item.Precio * item.Cantidad).ToString("F2"))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form asp-action="BuyProcess" asp-controller="Buy" method="post">
+        <input type="hidden" name="NumeroDocumentoCliente" value="" />
+        @for (int i = 0; i < Model.Items.Count; i++)
+        {
+            <input type="hidden" name="Items[@i].Referencia" value="@Model.Items[i].Referencia" />
+            <input type="hidden" name="Items[@i].Precio" value="@Model.Items[i].Precio" />
+            <input type="hidden" name="Items[@i].Cantidad" value="@Model.Items[i].Cantidad" />
+            <input type="hidden" name="Items[@i].Nombre" value="@Model.Items[i].Nombre" />
+        }
+        <button type="submit" class="btn btn-primary">Procesar Compra</button>
+    </form>
+</div>

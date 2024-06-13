@@ -1,0 +1,59 @@
+﻿@model ProyectoDB2.Models.RegisterModel
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registrarse</title>
+<style>
+
+    .register-container {
+        background: #fff;
+        padding: 40px 30px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        width: 400px;
+        text-align: center;
+        margin: 0 auto; /* Centrado horizontal */
+    }
+
+        .register-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .register-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .register-container button {
+            width: 100%;
+            padding: 10px;
+            background: #28a745;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+            .register-container button:hover {
+                background: #218838;
+            }
+</style>
+
+<div class="register-container">
+    <h2>Regístrate</h2>
+    <form asp-action="Register" method="POST">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="text" name="username" placeholder="Nombre de usuario" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Registrase</button>
+    </form>
+</div>
+

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using ProyectoDB2.Entityes;
+using ProyectoDB2.Models;
 using System.Data;
 
 namespace ProyectoDB2
@@ -13,12 +14,19 @@ namespace ProyectoDB2
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<ProductModelSP> Productos { get; set; }
 
-        public void RegisterUser(string userName, string password)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductModelSP>().HasKey(p => p.Referencia); // Configurar Referencia como clave primaria
+        }
+
+        public void RegisterUser(string userName, string password, int rol)
         {
             var userNameParam = new SqlParameter("@Username", userName);
             var passwordParam = new SqlParameter("@Password", password);
-            Database.ExecuteSqlRaw("EXEC RegisterUser @Username, @Password", userNameParam, passwordParam);
+            var rolParam = new SqlParameter("@RoleId", rol);
+            Database.ExecuteSqlRaw("EXEC RegisterUser @Username, @Password, @RoleId", userNameParam, passwordParam, rolParam);
         }
 
         public (bool success, int? roleId) LoginUser(string username, string password)
@@ -39,6 +47,14 @@ namespace ProyectoDB2
             }
 
             return (userFound, roleId);
+        }
+        public void BuyProcess(int numeroDocumentoCliente, string referenciaProducto, decimal precio, int cantidad )
+        {
+            var numeroDocumentoClienteParam = new SqlParameter("@NumeroDocumentoCliente", numeroDocumentoCliente);
+            var referenciaProductoParam = new SqlParameter("@ReferenciaProducto", referenciaProducto);
+            var precioParam = new SqlParameter("@Precio", precio);
+            var cantidadParam = new SqlParameter("@Cantidad", cantidad);
+            Database.ExecuteSqlRaw("EXEC sp_ProcesarCompra @NumeroDocumentoCliente, @ReferenciaProducto, @Precio, @Cantidad", numeroDocumentoClienteParam, referenciaProductoParam, precioParam, cantidadParam );
         }
     }
 

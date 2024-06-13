@@ -9,10 +9,6 @@
             _context = context;
         }
 
-        public void RegisterUser(string userName, string password)
-        {
-            _context.RegisterUser(userName, password);
-        }
 
         public (bool success, int? roleId) LoginUser(string userName, string password)
         {
