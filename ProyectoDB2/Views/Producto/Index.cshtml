@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Referencia</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Tipo de Producto</th>
+            <th>Material</th>
+            <th>Dimensiones (Alto x Ancho x Profundidad)</th>
+            <th>Color</th>
+            <th>Peso</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="productTableBody">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Referencia</td>
+                <td>@item.Nombre</td>
+                <td>@item.Descripcion</td>
+                <td>@item.TipoProducto</td>
+            </tr>
+        }
+    </tbody>
+</table>
