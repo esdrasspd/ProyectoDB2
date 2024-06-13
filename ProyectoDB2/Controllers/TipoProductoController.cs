@@ -20,7 +20,6 @@ namespace ProyectoDB2.Controllers
         public ActionResult Index()
         {
             var query = _context.Set<TipoProductoDTO>().FromSqlRaw("exec sp_ConsultarTipoProducto").ToList();
-
             return View(query);
         }
 
