@@ -21,12 +21,8 @@
 			<th>Descripción</th>
 			<th>Tipo de Producto</th>
 			<th>Material</th>
-			<th>Alto</th>
-			<th>Ancho</th>
-			<th>Profundidad</th>
 			<th>Color</th>
 			<th>Peso</th>
-			<th>Foto</th>
 		</tr>
 	</thead>
 	<tbody id="productTableBody">
@@ -38,9 +34,6 @@
 				<td>@item.Descripcion</td>
 				<td>@item.TipoProducto</td>
 				<td>@item.Material</td>
-				<td>@item.Alto</td>
-				<td>@item.Ancho</td>
-				<td>@item.Profundidad</td>
 				<td>@item.Color</td>
 				<td>@item.Peso</td>
 				<td>
@@ -53,6 +46,12 @@
 					@* Link a eliminar *@
 					<a href="@Url.Action("Delete", "Producto", new { id = item.Referencia })" class="btn btn-danger">
 						Eliminar
+					</a>
+				</td>
+				<td>
+					@* Link a detalles *@
+					<a href="@Url.Action("Details", "Producto", new { id = item.Referencia })" class="btn btn-success">
+						Detalle
 					</a>
 				</td>
 			</tr>
