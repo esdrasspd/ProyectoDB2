@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Reporte";
+}
+
+<h1>Reporte</h1>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Producto mas Vendido</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Reporte Producto Mas Vendido</h2>
+    <p>Fecha generación: <span id="fechaActual"></span></p>
+    <p>Fecha inicio: <span id="fecha_inicio">@Model[0].FechaInicio.ToString("dd/MM/yyyy")</span></p>
+    <p>Fecha fin: <span id="fecha_fin">@Model[0].FechaFinn.ToString("dd/MM/yyyy")</span></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Ciudad</th>
+                <th>Tipo de Producto</th>
+                <th>Nombre del Producto</th>
+                <th>Fecha de Compra</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @{
+            
+
+
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Ciudad</td>
+                        <td>@item.TipoProducto</td>
+                        <td>@item.Producto</td>
+                        <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>@item.Cantidades</td>
+   
+                    </tr>
+            
+                }
+
+            }
+        </tbody>
+        
+    </table>
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var today = new Date();
+        var day = String(today.getDate()).padStart(2, '0');
+        var month = String(today.getMonth() + 1).padStart(2, '0'); // Los meses son de 0 a 11
+        var year = today.getFullYear();
+
+        var formattedDate = day + '/' + month + '/' + year;
+
+        document.getElementById('fechaActual').textContent = formattedDate;
+    });
+</script>
+</html>

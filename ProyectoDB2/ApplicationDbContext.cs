@@ -29,8 +29,8 @@ namespace ProyectoDB2
 			modelBuilder.Entity<AdministradorDTO>().HasNoKey();
 			modelBuilder.Entity<UsuarioDTO>().HasNoKey();
 			modelBuilder.Entity<ReporteVentaDiariaDTO>().HasNoKey();
-
-		}
+            modelBuilder.Entity<ReporteProductoMasVendidoDTO>().HasNoKey();
+        }
 
 		public void RegisterUser(int numeroDocumento, string tipoDocumento, string nombreCompleto, string telefonoResidencia, string telefonoCelular, string direccion, string ciudadResidencia, string departamento,string pais, string profesion, string email, int idTipoCliente, string userName, string password, int rol)
         {
