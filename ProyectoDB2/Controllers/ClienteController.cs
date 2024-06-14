@@ -24,7 +24,9 @@ namespace ProyectoDB2.Controllers
 		// GET: Cliente/Details/5
 		public ActionResult Details(int id)
 		{
-			return View();
+            var cliente = _context.Set<ClienteDTO>().FromSqlRaw("EXEC SP_ConsultarCliente @p0", id).ToList().FirstOrDefault();
+			if (cliente == null) return NotFound();
+            return View(cliente);
 		}
 
 		// GET: Cliente/Create
