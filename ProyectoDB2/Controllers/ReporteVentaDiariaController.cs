@@ -16,16 +16,15 @@ namespace ProyectoDB2.Controllers
 		// GET: ReporteVentaDiariaController
 		public ActionResult Index()
 		{
-			var ReporteVentaDiaria = _context.Set< ReporteVentaDiariaDTO>().FromSqlRaw("exec sp_ReporteVentasDiarias").ToList();
-			return View(ReporteVentaDiaria);
-
-
+            ViewBag.TiposProductos = TiposProductos();
+            return View();
 		}
 
 		// GET: ReporteVentaDiariaController/Details/5
-		public ActionResult Details(int id)
+		public ActionResult Details(DateOnly fechaIni,DateOnly fechafin )
 		{
-			return View();
+            var ReporteVentaDiaria = _context.Set<ReporteVentaDiariaDTO>().FromSqlRaw("exec sp_ReporteVentasDiarias '@p0', '@p1',2, ''").ToList();
+            return View(ReporteVentaDiaria);
 		}
 
 		// GET: ReporteVentaDiariaController/Create
@@ -90,5 +89,11 @@ namespace ProyectoDB2.Controllers
 				return View();
 			}
 		}
-	}
+        private List<TipoProductoDTO> TiposProductos()
+        {
+            var query = _context.Set<TipoProductoDTO>().FromSqlRaw("exec sp_ConsultarTipoProducto").ToList();
+            return query;
+        }
+    }
+
 }
