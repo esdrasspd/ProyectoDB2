@@ -1,0 +1,33 @@
+﻿@using ProyectoDB2.DTOs
+@model AdministradorDTO
+
+@{
+	ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar</h1>
+<div>
+	<p>¿Quiere borrar el producto '@Model.Nombre'?</p>
+
+	<div class="d-flex">
+		<form asp-action="Delete" method="post">
+			<a href="@Url.Action("Index", "Administrador")" class="btn btn-secondary">
+				No
+			</a>
+			<input type="hidden" asp-for="Id" />
+			<button type="submit" class="btn btn-danger">Eliminar</button>
+		</form>
+	</div>
+</div>
+
+@if (TempData["Error"] != null)
+{
+	<div class="alert alert-danger mt-5" role="alert">
+		<strong>
+			No se pudo eliminar el producto:
+		</strong>
+		<div>
+			@TempData["Error"]
+		</div>
+	</div>
+}

@@ -1,40 +1,85 @@
 ﻿@{
     ViewData["Title"] = "Carrito de Compras";
 }
-<div class="container">
-    <h1>Carrito de Compras</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Referencia</th>
-                <th>Nombre</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Items)
-            {
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Carrito de Compras</h1>
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@item.Referencia</td>
-                    <td>@item.Nombre</td>
-                    <td>Q @item.Precio.ToString("F2")</td>
-                    <td>@item.Cantidad</td>
-                    <td>@((item.Precio * item.Cantidad).ToString("F2"))</td>
+                    <th>Referencia</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
                 </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td>@item.Referencia</td>
+                        <td>@item.Nombre</td>
+                        <td>Q @item.Precio.ToString("F2")</td>
+                        <td>@item.Cantidad</td>
+                        <td>@((item.Precio * item.Cantidad).ToString("F2"))</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <form id="buyForm" method="post">
+            <input type="hidden" name="NumeroDocumentoCliente" value="" />
+            @for (int i = 0; i < Model.Items.Count; i++)
+            {
+                <input type="hidden" name="Items[@i].Referencia" value="@Model.Items[i].Referencia" />
+                <input type="hidden" name="Items[@i].Precio" value="@Model.Items[i].Precio" />
+                <input type="hidden" name="Items[@i].Cantidad" value="@Model.Items[i].Cantidad" />
+                <input type="hidden" name="Items[@i].Nombre" value="@Model.Items[i].Nombre" />
             }
-        </tbody>
-    </table>
-    <form asp-action="BuyProcess" asp-controller="Buy" method="post">
-        <input type="hidden" name="NumeroDocumentoCliente" value="" />
-        @for (int i = 0; i < Model.Items.Count; i++)
-        {
-            <input type="hidden" name="Items[@i].Referencia" value="@Model.Items[i].Referencia" />
-            <input type="hidden" name="Items[@i].Precio" value="@Model.Items[i].Precio" />
-            <input type="hidden" name="Items[@i].Cantidad" value="@Model.Items[i].Cantidad" />
-            <input type="hidden" name="Items[@i].Nombre" value="@Model.Items[i].Nombre" />
-        }
-        <button type="submit" class="btn btn-primary">Procesar Compra</button>
-    </form>
-</div>
+            <button type="submit" class="btn btn-primary">Procesar Compra</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#buyForm').on('submit', function (event) {
+                event.preventDefault(); // Evitar el envío normal del formulario
+
+                $.ajax({
+                    url: '@Url.Action("BuyProcess", "Buy")',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            alertify.success('Compra realizada exitosamente');
+                            setTimeout(function () {
+                                window.location.href = '@Url.Action("Index", "Home")';
+                            }, 2000); // Esperar 2 segundos antes de redirigir
+                        } else {
+                            alertify.error('Error al realizar la compra');
+                            setTimeout(function () {
+                                window.location.href = '@Url.Action("Index", "Home")';
+                            }, 2000); // Esperar 2 segundos antes de redirigir
+                        }
+                    },
+                    error: function () {
+                        alertify.error('Error al realizar la compra');
+                        setTimeout(function () {
+                            window.location.href = '@Url.Action("Index", "Home")';
+                        }, 2000); // Esperar 2 segundos antes de redirigir
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

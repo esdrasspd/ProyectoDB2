@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ProyectoDB2.Helpers;
 using ProyectoDB2.Models;
 using ProyectoDB2.Services;
+using System.Data;
 using System.Diagnostics;
 
 namespace ProyectoDB2.Controllers
@@ -24,6 +26,7 @@ namespace ProyectoDB2.Controllers
             var products = _homeService.GetProducts();
             return View(products);
         }
+        [Authorize(Roles = "2")]
         [HttpPost]
         public IActionResult OnPostAddToCart(string referencia, string nombre, decimal precio, int cantidad)
         {
@@ -38,7 +41,7 @@ namespace ProyectoDB2.Controllers
             HttpContext.Session.Set("Items", cart);
             return RedirectToAction("CartShopping");
         }
-
+        [Authorize(Roles = "2")]
         public IActionResult CartShopping()
         {
             var username = _httpContextAccessor.HttpContext.Session.GetString("UsernameClient");

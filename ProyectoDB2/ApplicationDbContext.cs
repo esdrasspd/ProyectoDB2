@@ -28,15 +28,29 @@ namespace ProyectoDB2
             modelBuilder.Entity<TipoClienteDTO>().HasNoKey();
 			modelBuilder.Entity<AdministradorDTO>().HasNoKey();
 			modelBuilder.Entity<UsuarioDTO>().HasNoKey();
+			modelBuilder.Entity<ReporteVentaDiariaDTO>().HasNoKey();
 
 		}
 
-		public void RegisterUser(string userName, string password, int rol)
+		public void RegisterUser(int numeroDocumento, string tipoDocumento, string nombreCompleto, string telefonoResidencia, string telefonoCelular, string direccion, string ciudadResidencia, string departamento,string pais, string profesion, string email, int idTipoCliente, string userName, string password, int rol)
         {
+            var numeroDocumentoParam = new SqlParameter("@NumeroDocumento", numeroDocumento);
+            var tipoDocumentoParam = new SqlParameter("@TipoDocumento", tipoDocumento);
+            var nombreCompletoParam = new SqlParameter("@NombreCompleto", nombreCompleto);
+            var telefonoResidenciaParam = new SqlParameter("@TelefonoResidencia", telefonoResidencia);
+            var telefonoCelularParam = new SqlParameter("@TelefonoCelular", telefonoCelular);
+            var direccionParam = new SqlParameter("@Direccion", direccion);
+            var ciudadResidenciaParam = new SqlParameter("@CiudadResidencia", ciudadResidencia);
+            var departamentoParam = new SqlParameter("@Departamento", departamento);
+            var paisParam = new SqlParameter("@Pais", pais);
+            var profesionParam = new SqlParameter("@Profesion", profesion);
+            var emailParam = new SqlParameter("@Email", email);
+            var idTipoClienteParam = new SqlParameter("@IdTipoCliente", idTipoCliente);
             var userNameParam = new SqlParameter("@Username", userName);
             var passwordParam = new SqlParameter("@Password", password);
             var rolParam = new SqlParameter("@RoleId", rol);
-            Database.ExecuteSqlRaw("EXEC RegisterUser @Username, @Password, @RoleId", userNameParam, passwordParam, rolParam);
+            //Database.ExecuteSqlRaw("EXEC RegisterUser @Username, @Password, @RoleId", userNameParam, passwordParam, rolParam);
+            Database.ExecuteSqlRaw("EXEC RegisterUser @NumeroDocumento, @TipoDocumento, @NombreCompleto, @TelefonoResidencia, @TelefonoCelular, @Direccion, @CiudadResidencia, @Departamento, @Pais, @Profesion, @Email, @IdTipoCliente, @Username, @Password, @RoleId", numeroDocumentoParam, tipoDocumentoParam, nombreCompletoParam, telefonoResidenciaParam, telefonoCelularParam, direccionParam, ciudadResidenciaParam, departamentoParam, paisParam, profesionParam, emailParam, idTipoClienteParam, userNameParam, passwordParam, rolParam);
         }
 
         public (bool success, int? roleId) LoginUser(string username, string password)

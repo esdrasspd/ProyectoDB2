@@ -29,7 +29,7 @@ namespace ProyectoDB2.Controllers
         {
             try
             {
-                _registerService.RegisterUser(model.Username, model.Password, 2);
+                _registerService.RegisterUser(model.NumeroDocumento, model.TipoDocumento, model.NombreCompleto, model.TelefonoResidencia, model.TelefonoCelular, model.Direccion, model.CiudadResidencia, model.Departamento, model.Pais, model.Profesion, model.Email, model.IdTipoCliente, model.Username, model.Password, 2);
                 var (success, roleId) = _loginService.LoginUser(model.Username, model.Password);
 
                 if (success)

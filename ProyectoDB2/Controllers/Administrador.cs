@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoDB2.DTOs;
@@ -6,6 +7,7 @@ using ProyectoDB2.Entityes;
 
 namespace ProyectoDB2.Controllers
 {
+    [Authorize(Roles = "1")]
 	public class Administrador : Controller
 	{
 		private readonly ApplicationDbContext _context;
@@ -55,28 +57,39 @@ namespace ProyectoDB2.Controllers
         // GET: Administrador/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var administrador = GetAdministrador(id);
+            if (administrador == null) return NotFound();
+            ViewBag.TiposUsuario = TiposUsuario();
+
+			return View(new AdministradorModel
+            {
+                IdUsuario = administrador.IdUsuario,
+                Nombre = administrador.Nombre,
+            });
         }
 
         // POST: Administrador/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, AdministradorModel administrador  )
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                _context.Database.ExecuteSqlRaw("exec SP_ActualizarAdministrador @p0, @p1, @p2", id, administrador.Nombre, administrador.IdUsuario);
+				return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
-                return View();
+				ViewBag.TiposUsuario = TiposUsuario();
+				return View();
             }
         }
 
         // GET: Administrador/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var administrador = GetAdministrador(id);
+            return View(administrador);
         }
 
         // POST: Administrador/Delete/5
@@ -86,12 +99,15 @@ namespace ProyectoDB2.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+				_context.Database.ExecuteSqlRaw("exec SP_EliminarAdministrador @p0", id);
+				return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex) 
             {
-                return View();
-            }
+				TempData["Error"] = ex.Message;
+				var administrador = GetAdministrador(id);
+				return View(administrador);
+			}
         }
         private AdministradorDTO GetAdministrador(int id)
         {
@@ -100,9 +116,10 @@ namespace ProyectoDB2.Controllers
         }
         private List<UsuarioDTO> TiposUsuario()
         {
+            
             var query = _context.Set<UsuarioDTO>().FromSqlRaw("exec sp_ConsultarUsuarios 1").ToList(); //el 1 es para que traiga los usuarios
                                                                                                        // que son de Rol administradores																								
             return query;
         }
-    }
+	}
 }

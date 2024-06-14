@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System.Data;
 
 namespace ProyectoDB2.Controllers
 {
+    [Authorize(Roles = "1")]
     public class TipoProductoController : Controller
     {
         private readonly ApplicationDbContext _context;
