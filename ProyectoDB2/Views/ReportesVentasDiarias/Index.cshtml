@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Ventas Diarias</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h2>Reporte de Ventas Diarias</h2>
+    <p>Ciudad: <span id="ciudad">@Model.FirstOrDefault()?.Ciudad</span></p>
+    <p>Fecha generación: <span id="fecha_generacion">@Model.FirstOrDefault()?.FechaGeneracion.ToString("dd/MM/yyyy")</span></p>
+    <p>Fecha inicio: <span id="fecha_inicio">@Model.FirstOrDefault()?.FechaInicio.ToString("dd/MM/yyyy")</span></p>
+    <p>Fecha fin: <span id="fecha_fin">@Model.FirstOrDefault()?.FechaFin.ToString("dd/MM/yyyy")</span></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Fecha de Compra</th>
+                <th>Tipo de Producto</th>
+                <th>Nombre del Producto</th>
+                <th>Cantidad</th>
+                <th>Costo Unitario</th>
+                <th>SubTotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.FechaCompra.ToString("dd/MM/yyyy")</td>
+                    <td>@item.TipoProducto</td>
+                    <td>@item.NombreProducto</td>
+                    <td>@item.Cantidad</td>
+                    <td>@item.CostoUnitario.ToString("C")</td>
+                    <td>@item.SubTotal.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" style="text-align:right"><strong>TOTAL (en pesos)</strong></td>
+                <td>@* @Model.Sum(m => m.SubTotal).ToString("C") *@ 0</td> 
+            </tr>
+        </tfoot>
+    </table>
+</body>
+</html>

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System.Data;
 
 namespace ProyectoDB2.Controllers
 {
+    [Authorize(Roles = "1")]
     public class TipoProductoController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -87,13 +89,17 @@ namespace ProyectoDB2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            var ids = collection["Id"];
             try
             {
+                _context.Database.ExecuteSqlRaw("exec sp_EliminarTipoProducto @p0", id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                TempData["Error"] = ex.Message;
+                var tipoCliente = _context.Set<TipoClienteDTO>().FromSqlRaw("exec sp_EliminarTipoProducto @p0", id).ToList();
+                return View(tipoCliente);
             }
         }
     }

@@ -46,7 +46,7 @@ namespace ProyectoDB2.Controllers
                         if (roleId == 1)
                         {
                             _httpContextAccessor.HttpContext.Session.SetString("UsernameAdmin", model.Username);
-                            return RedirectToAction("Index", "Admin");
+                            return RedirectToAction("Index", "Administrador");
                         }
                         else if (roleId == 2)
                         {

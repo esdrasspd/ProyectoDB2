@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoDB2.DTOs;
@@ -6,6 +7,7 @@ using ProyectoDB2.Entityes;
 
 namespace ProyectoDB2.Controllers
 {
+    [Authorize(Roles = "1")]
 	public class Administrador : Controller
 	{
 		private readonly ApplicationDbContext _context;

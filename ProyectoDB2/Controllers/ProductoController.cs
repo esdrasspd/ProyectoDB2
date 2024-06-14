@@ -1,13 +1,16 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoDB2.DTOs;
 using ProyectoDB2.Entityes;
+using System.Data;
 using System.Drawing;
 
 namespace ProyectoDB2.Controllers
 {
-	public class ProductoController : Controller
+    [Authorize(Roles = "1")]
+    public class ProductoController : Controller
 	{
 		private readonly ApplicationDbContext _context;
 
@@ -51,9 +54,11 @@ namespace ProyectoDB2.Controllers
 			}
 			catch (Exception ex)
 			{
-				ViewBag.TiposProductos = TiposProductos();
+                TempData["Error"] = ex.Message;
+                ViewBag.TiposProductos = TiposProductos();
 				return View();
-			}
+
+            }
 		}
 
 		// GET: Producto/Edit/{ref}
