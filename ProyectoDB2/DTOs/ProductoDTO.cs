@@ -15,5 +15,6 @@
 		public int Stock { get; set; }
 		public decimal Precio { get; set; }
 		public string? Foto { get; set; }
+		public int IdTipoProducto { get; set; }
 	}
 }
