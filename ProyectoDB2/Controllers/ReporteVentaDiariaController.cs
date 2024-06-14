@@ -21,11 +21,19 @@ namespace ProyectoDB2.Controllers
 		}
 
 		// GET: ReporteVentaDiariaController/Details/5
-		public ActionResult Details(DateOnly fechaIni,DateOnly fechafin )
+		public ActionResult Details(DateTime inicio,DateTime fin, int tipoProducto)
 		{
-            var ReporteVentaDiaria = _context.Set<ReporteVentaDiariaDTO>().FromSqlRaw("exec sp_ReporteVentasDiarias '@p0', '@p1',2, ''").ToList();
+            var ReporteVentaDiaria = _context.Set<ReporteVentaDiariaDTO>().FromSqlRaw("exec sp_ReporteVentasDiarias @p0, @p1,@p2, ''",inicio,fin,tipoProducto).ToList();
+            if (ReporteVentaDiaria == null || !ReporteVentaDiaria.Any())
+            {
+                // Si no hay resultados, redirigir a otra acción o mostrar un mensaje
+                TempData["ErrorMessage"] = "No se encontraron resultados para las fechas y tipo de producto seleccionados.";
+                return RedirectToAction(); // Redirige a la acción Index o la que consideres adecuada
+            }
+
+            // Si hay resultados, enviar los datos a la vista
             return View(ReporteVentaDiaria);
-		}
+        }
 
 		// GET: ReporteVentaDiariaController/Create
 		public ActionResult Create()

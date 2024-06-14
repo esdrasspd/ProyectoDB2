@@ -48,21 +48,29 @@
             </tr>
         </thead>
         <tbody>
-            @{
-                decimal total = 0.0M;
-                foreach (var item in Model)
+            @if (TempData["ErrorMessage"] != null)
+            {
+                <div class="alert alert-warning">@TempData["ErrorMessage"]</div>
+            }
+            @{decimal total = 0.0M;
+                if (Model != null )
                 {
-                    <tr>
-                        <td>@item.FechaCompra.ToString("dd/MM/yyyy")</td>
-                        <td>@item.TipoProducto</td>
-                        <td>@item.Ciudad</td>
-                        <td>@item.NombreProducto</td>
-                        <td>@item.Cantidad</td>
-                        <td>@item.CostoUnitario.ToString("C")</td>
-                        <td>@item.SubTotal.ToString("C")</td>
-                    </tr>
-                    total += item.SubTotal;
+                    
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.FechaCompra.ToString("dd/MM/yyyy")</td>
+                            <td>@item.TipoProducto</td>
+                            <td>@item.Ciudad</td>
+                            <td>@item.NombreProducto</td>
+                            <td>@item.Cantidad</td>
+                            <td>@item.CostoUnitario.ToString("C")</td>
+                            <td>@item.SubTotal.ToString("C")</td>
+                        </tr>
+                        total += item.SubTotal;
+                    } 
                 }
+                
             }
         </tbody>
         <tfoot>
