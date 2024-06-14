@@ -87,13 +87,17 @@ namespace ProyectoDB2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, IFormCollection collection)
         {
+            var ids = collection["Id"];
             try
             {
+                _context.Database.ExecuteSqlRaw("exec sp_EliminarTipoProducto @p0", id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                TempData["Error"] = ex.Message;
+                var tipoCliente = _context.Set<TipoClienteDTO>().FromSqlRaw("exec sp_EliminarTipoProducto @p0", id).ToList();
+                return View(tipoCliente);
             }
         }
     }
