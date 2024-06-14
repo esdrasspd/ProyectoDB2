@@ -1,0 +1,51 @@
+﻿@using ProyectoDB2.DTOs
+@model IEnumerable<AdministradorDTO>
+
+@{
+    ViewBag.Title = "Administradores";
+}
+<div class="d-flex justify-content-between align-items-center my-3">
+	<h1>Administradores</h1>
+
+	<button onclick="location.href='@Url.Action("Create", "Administrador")'" class="btn btn-primary">
+		Crear Admininstrador
+	</button>
+</div>
+
+<table class="table table-bordered table-striped">
+	<thead class="thead-dark">
+		<tr>
+			<th>ID</th>
+			<th>Nombre</th>
+			<th>Username</th>
+		</tr>
+	</thead>
+	<tbody id="productTableBody">
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>@item.Id</td>
+				<td>@item.Nombre</td>
+				<td>@item.Username</td>
+				<td>
+					@* Link a editar *@
+					<a href="@Url.Action("Edit", "Administrador", new { id = item.Id })" class="btn btn-primary">
+						Editar
+					</a>
+				</td>
+				<td>
+					@* Link a eliminar *@
+					<a href="@Url.Action("Delete", "Administrador", new { id = item.Id })" class="btn btn-danger">
+						Eliminar
+					</a>
+				</td>
+				<td>
+					@* Link a detalles *@
+					<a href="@Url.Action("Details", "Administrador", new { id = item.Id })" class="btn btn-success">
+						Detalle
+					</a>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
