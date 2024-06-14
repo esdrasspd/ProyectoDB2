@@ -106,15 +106,18 @@ namespace ProyectoDB2.Controllers
 		// POST: Producto/Delete/{ref}
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Delete(string id, IFormCollection collection)
+		public ActionResult Delete(string referencia, IFormCollection collection)
 		{
 			try
 			{
+				_context.Database.ExecuteSqlRaw("exec sp_EliminarProducto @p0", referencia);
 				return RedirectToAction(nameof(Index));
 			}
-			catch
+			catch (Exception ex)
 			{
-				return View();
+				TempData["Error"] = ex.Message;
+				var producto = GetProducto(referencia);
+				return View(producto);
 			}
 		}
 
