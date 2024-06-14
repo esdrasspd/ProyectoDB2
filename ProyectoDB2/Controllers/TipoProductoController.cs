@@ -26,7 +26,8 @@ namespace ProyectoDB2.Controllers
         // GET: TipoProductoController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var producto = _context.Set<TipoProductoDTO>().FromSqlRaw("exec sp_ConsultarTipoProducto @p0", id).ToList();
+            return View(producto);
         }
 
         // GET: TipoProductoController/Create
@@ -53,7 +54,8 @@ namespace ProyectoDB2.Controllers
         // GET: TipoProductoController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var producto = _context.Set<TipoProductoDTO>().FromSqlRaw("exec sp_ConsultarTipoProducto @p0", id).ToList();
+            return View(producto);
         }
 
         // POST: TipoProductoController/Edit/5
@@ -74,7 +76,8 @@ namespace ProyectoDB2.Controllers
         // GET: TipoProductoController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var producto = _context.Set<TipoProductoDTO>().FromSqlRaw("exec sp_ConsultarTipoProducto @p0", id).ToList();
+            return View(producto);
         }
 
         // POST: TipoProductoController/Delete/5

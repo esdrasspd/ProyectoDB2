@@ -20,6 +20,9 @@ namespace ProyectoDB2
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<TipoProductoDTO>().HasNoKey();
+			modelBuilder.Entity<ProductoDTO>().HasNoKey();
+            modelBuilder.Entity<ProductoDTO>().Property(p => p.Precio)
+                .HasColumnType("money");
             modelBuilder.Entity<ProductModelSP>().HasKey(p => p.Referencia); // Configurar Referencia como clave primaria
             modelBuilder.Entity<TipoClienteDTO>().HasNoKey();
         }

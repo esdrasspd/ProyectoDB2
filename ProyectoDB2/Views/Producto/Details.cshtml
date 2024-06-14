@@ -1,0 +1,40 @@
+﻿@using ProyectoDB2.DTOs
+@model ProductoDTO
+
+@{
+    ViewData["Title"] = "Detalles del Producto";
+}
+
+<div class="container">
+    <h1>Detalles del Producto</h1>
+    <dl class="row">
+        <dt class="col-sm-3">Referencia:</dt>
+        <dd class="col-sm-9">@Model.Referencia</dd>
+
+        <dt class="col-sm-3">Nombre:</dt>
+        <dd class="col-sm-9">@Model.Nombre</dd>
+
+        <dt class="col-sm-3">Descripción:</dt>
+        <dd class="col-sm-9">@Model.Descripcion</dd>
+
+        <dt class="col-sm-3">Tipo de Producto:</dt>
+        <dd class="col-sm-9">@Model.TipoProducto</dd>
+
+        <dt class="col-sm-3">Material:</dt>
+        <dd class="col-sm-9">@Model.Material</dd>
+
+        <dt class="col-sm-3">Dimensiones:</dt>
+        <dd class="col-sm-9">
+            Alto: @Model.Alto,
+            Ancho: @Model.Ancho,
+            Profundidad: @Model.Profundidad
+        </dd>
+
+        <dt class="col-sm-3">Color:</dt>
+        <dd class="col-sm-9">@Model.Color</dd>
+
+        <dt class="col-sm-3">Peso:</dt>
+        <dd class="col-sm-9">@Model.Peso</dd>
+    </dl>
+    <a asp-action="Index" class="btn btn-primary">Volver a la Lista</a>
+</div>
