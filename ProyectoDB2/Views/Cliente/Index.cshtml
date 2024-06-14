@@ -12,59 +12,61 @@
 	</a>
 </div>
 
-<table class="table table-bordered table-striped">
-	<thead class="thead-dark">
-		<tr>
-			<td>Tipo Documento</td>
-			<td>Numero Documento</td>
-			<td>Nombre Completo</td>
-			<td>Telefono Residencia</td>
-			<td>Telefono Celular</td>
-			<td>Direccion</td>
-			<td>Ciudad Residencia</td>
-			<td>Departamento</td>
-			<td>Pais</td>
-			<td>Profesion</td>
-			<td>Email</td>
-			<td>Nit</td>
-			<td>Tipo Cliente</td>
-			<td>Username</td>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
+<div class="table-responsive">
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
 			<tr>
-				<td>@item.TipoDocumento</td>
-				<td>@item.NumeroDocumento</td>
-				<td>@item.NombreCompleto</td>
-				<td>@item.TelefonoResidencia</td>
-				<td>@item.TelefonoCelular</td>
-				<td>@item.Direccion</td>
-				<td>@item.CiudadResidencia</td>
-				<td>@item.Departamento</td>
-				<td>@item.Pais</td>
-				<td>@item.Profesion</td>
-				<td>@item.Email</td>
-				<td>@item.Nit</td>
-				<td>@item.NombreTipoCliente</td>
-				<td>@item.Username</td>
-				<td>
-					<a href="@Url.Action("Edit", "Cliente", new { id = item.NumeroDocumento })" class="btn btn-primary">
-						Editar
-					</a>
-				</td>
-				<td>
-					<a href="@Url.Action("Delete", "Cliente", new { id = item.NumeroDocumento })" class="btn btn-danger">
-						Eliminar
-					</a>
-				</td>
-				<td>
-					<a href="@Url.Action("Details", "Cliente", new { id = item.NumeroDocumento })" class="btn btn-success">
-						Detalle
-					</a>
-				</td>
+				<td>Tipo Documento</td>
+				<td>Numero Documento</td>
+				<td>Nombre Completo</td>
+				<td>Telefono Residencia</td>
+				<td>Telefono Celular</td>
+				<td>Direccion</td>
+				<td>Ciudad Residencia</td>
+				<td>Departamento</td>
+				<td>Pais</td>
+				<td>Profesion</td>
+				<td>Email</td>
+				<td>Nit</td>
+				<td>Tipo Cliente</td>
+				<td>Usuario</td>
+				<td>Acciones</td>
 			</tr>
-		}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr>
+					<td>@item.TipoDocumento</td>
+					<td>@item.NumeroDocumento</td>
+					<td>@item.NombreCompleto</td>
+					<td>@item.TelefonoResidencia</td>
+					<td>@item.TelefonoCelular</td>
+					<td>@item.Direccion</td>
+					<td>@item.CiudadResidencia</td>
+					<td>@item.Departamento</td>
+					<td>@item.Pais</td>
+					<td>@item.Profesion</td>
+					<td>@item.Email</td>
+					<td>@item.Nit</td>
+					<td>@item.NombreTipoCliente</td>
+					<td>@item.Username</td>
+					<td>
+						<div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+
+							<a href="@Url.Action("Edit", "Cliente", new { id = item.NumeroDocumento })" class="btn btn-primary">
+								Editar
+							</a>
+							<a href="@Url.Action("Delete", "Cliente", new { id = item.NumeroDocumento })" class="btn btn-danger">
+								Eliminar
+							</a>
+							<a href="@Url.Action("Details", "Cliente", new { id = item.NumeroDocumento })" class="btn btn-success">
+								Detalle
+							</a>
+						</div>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</div>
