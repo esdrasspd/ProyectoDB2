@@ -28,6 +28,7 @@ namespace ProyectoDB2
             modelBuilder.Entity<TipoClienteDTO>().HasNoKey();
 			modelBuilder.Entity<AdministradorDTO>().HasNoKey();
 			modelBuilder.Entity<UsuarioDTO>().HasNoKey();
+			modelBuilder.Entity<ReporteVentaDiariaDTO>().HasNoKey();
 
 		}
 
