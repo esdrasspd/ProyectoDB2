@@ -51,9 +51,11 @@ namespace ProyectoDB2.Controllers
 			}
 			catch (Exception ex)
 			{
-				ViewBag.TiposProductos = TiposProductos();
+                TempData["Error"] = ex.Message;
+                ViewBag.TiposProductos = TiposProductos();
 				return View();
-			}
+
+            }
 		}
 
 		// GET: Producto/Edit/{ref}
