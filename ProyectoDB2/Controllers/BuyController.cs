@@ -23,13 +23,18 @@ namespace ProyectoDB2.Controllers
         public IActionResult BuyProcess(BuyModel request)
         {
             request.NumeroDocumentoCliente = 987654321;
-            
+            bool okBuy = ProcessBuy(request);
+            return Json(new { success = okBuy });
+
+        }
+
+        private bool ProcessBuy(BuyModel request)
+        {
             foreach (var item in request.Items)
             {
                 _buyServices.BuyProcess(request.NumeroDocumentoCliente, item.Referencia, item.Precio, item.Cantidad);
             }
-            return RedirectToAction("Index", "Home");
-
+            return true;
         }
 
     }
