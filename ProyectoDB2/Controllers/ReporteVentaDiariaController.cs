@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoDB2.DTOs;
 
 namespace ProyectoDB2.Controllers
 {
-	public class ReporteVentaDiariaController : Controller
+    [Authorize(Roles = "1")]
+    public class ReporteVentaDiariaController : Controller
 	{
 		private readonly ApplicationDbContext _context;
 
@@ -28,7 +30,7 @@ namespace ProyectoDB2.Controllers
             {
                 // Si no hay resultados, redirigir a otra acción o mostrar un mensaje
                 TempData["ErrorMessage"] = "No se encontraron resultados para las fechas y tipo de producto seleccionados.";
-                return RedirectToAction(); // Redirige a la acción Index o la que consideres adecuada
+                return RedirectToAction("Index");// Redirige a la acción Index o la que consideres adecuada
             }
 
             // Si hay resultados, enviar los datos a la vista

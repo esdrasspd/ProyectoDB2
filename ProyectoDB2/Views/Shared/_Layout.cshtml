@@ -72,7 +72,7 @@
             }
             @if(Context.Session.GetString("UsernameAdmin") != null)
             {
-
+                <a asp-controller="ReporteVentaDiaria" asp-action="Index">Ventas Diarias</a>
             <a asp-controller="TipoProducto" asp-action="Index">Tipos de Productos</a>
             <a asp-controller="Producto" asp-action="Index">Productos</a>
             <a asp-controller="TipoCliente" asp-action="Index">Tipos de Clientes</a>
