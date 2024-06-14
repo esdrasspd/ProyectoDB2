@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Crear Reporte";
+}
+
+<h2>Reporte Producto Compras Por Cliente</h2>
+<h3>Seleccione un Cliente</h3>
+
+<form method="get" action="@Url.Action("Details", "ReporteCompraPorCliente")">
+    
+    <div class="form-group">
+        <label for="tipoProducto">Listado de Clientes:</label>
+        <select class="form-control" id="id" name="id">
+            @foreach (var item in ViewBag.ListadoClientes)
+            {
+                <option value="@item.NumeroDocumento">@item.NombreCompleto</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Ver Reporte</button>
+</form>
+

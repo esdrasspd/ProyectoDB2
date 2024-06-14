@@ -1,4 +1,5 @@
 ﻿using MessagePack;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,7 @@ using System.Security.Principal;
 
 namespace ProyectoDB2.Controllers
 {
+	[Authorize (Roles = "1")]
 	public class ClienteController : Controller
 	{
 		private readonly ApplicationDbContext _context;
