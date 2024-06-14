@@ -30,9 +30,11 @@ namespace ProyectoDB2
 			modelBuilder.Entity<UsuarioDTO>().HasNoKey();
 			modelBuilder.Entity<ReporteVentaDiariaDTO>().HasNoKey();
             modelBuilder.Entity<ReporteProductoMasVendidoDTO>().HasNoKey();
+            modelBuilder.Entity<ReporteCierreCajaDTO>().HasNoKey();
+
         }
 
-		public void RegisterUser(int numeroDocumento, string tipoDocumento, string nombreCompleto, string telefonoResidencia, string telefonoCelular, string direccion, string ciudadResidencia, string departamento,string pais, string profesion, string email, int idTipoCliente, string userName, string password, int rol)
+        public void RegisterUser(int numeroDocumento, string tipoDocumento, string nombreCompleto, string telefonoResidencia, string telefonoCelular, string direccion, string ciudadResidencia, string departamento,string pais, string profesion, string email, int idTipoCliente, string userName, string password, int rol)
         {
             var numeroDocumentoParam = new SqlParameter("@NumeroDocumento", numeroDocumento);
             var tipoDocumentoParam = new SqlParameter("@TipoDocumento", tipoDocumento);

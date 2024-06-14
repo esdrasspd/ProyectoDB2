@@ -72,6 +72,7 @@
             }
             @if(Context.Session.GetString("UsernameAdmin") != null)
             {
+                <a asp-controller="ReporteCierreCaja" asp-action="Index">Cierre de Caja</a>
                 <a asp-controller="ReporteVentaDiaria" asp-action="Index">Ventas Diarias</a>
                 <a asp-controller="ReporteProductoMasVendido" asp-action="Index">Mas Vendido</a>
                 <a asp-controller="TipoProducto" asp-action="Index">Tipos de Productos</a>
