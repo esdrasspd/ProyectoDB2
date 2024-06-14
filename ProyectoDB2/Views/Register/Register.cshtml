@@ -51,6 +51,26 @@
     <h2>Regístrate</h2>
     <form asp-action="Register" method="POST">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="number" name="numeroDocumento" placeholder="Numero de documento" required />
+        <label class="col-form-label">Tipo de documento</label>
+        <select name="tipoDocumento" required>
+            <option value="DPI">DPI</option>
+            <option value="NIT">NIT</option>
+        </select>
+        <input type="text" name="nombreCompleto" placeholder="Nombre completo" required />
+        <input type="number" name="telefonoResidencia" placeholder="Telefono Residencia" required />
+        <input type="number" name="telefonoCelular" placeholder="Telefono Celular" required />
+        <input type="text" name="direccion" placeholder="Dirección" required />
+        <input type="text" name="ciudadResidencia" placeholder="Ciudad Residencia" required />
+        <input type="text" name="departamento" placeholder="Departamento" required />
+        <input type="text" name="pais" placeholder="Pais" required />
+        <input type="text" name="profesion" placeholder="Profesion" />
+        <input type="text" name="email" placeholder="Email" required />
+        <label class="col-form-label">Tipo de cliente</label>
+        <select name="idTipoCliente" required>
+            <option value="1">Persona Jurídica</option>
+            <option value="2">Persona natural</option>
+        </select>
         <input type="text" name="username" placeholder="Nombre de usuario" required>
         <input type="password" name="password" placeholder="Contraseña" required>
         <button type="submit">Registrase</button>
