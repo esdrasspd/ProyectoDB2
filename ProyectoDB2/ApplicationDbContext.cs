@@ -21,12 +21,14 @@ namespace ProyectoDB2
         {
             modelBuilder.Entity<TipoProductoDTO>().HasNoKey();
 			modelBuilder.Entity<ProductoDTO>().HasNoKey();
+            modelBuilder.Entity<ClienteDTO>().HasNoKey();
             modelBuilder.Entity<ProductoDTO>().Property(p => p.Precio)
                 .HasColumnType("money");
             modelBuilder.Entity<ProductModelSP>().HasKey(p => p.Referencia); // Configurar Referencia como clave primaria
             modelBuilder.Entity<TipoClienteDTO>().HasNoKey();
 			modelBuilder.Entity<AdministradorDTO>().HasNoKey();
 			modelBuilder.Entity<UsuarioDTO>().HasNoKey();
+			modelBuilder.Entity<ReporteVentaDiariaDTO>().HasNoKey();
 
 		}
 
