@@ -1,7 +1,104 @@
-﻿
+﻿@using ProyectoDB2.DTOs
+@model ClienteDTO
+
 @{
-    ViewData["Title"] = "Edit";
+	ViewData["Title"] = "Editar Cliente";
 }
 
-<h1>Edit</h1>
+<h1 class="my-3">Editar Cliente</h1>
 
+@if (TempData["Error"] != null)
+{
+	<div class="alert alert-danger mt-5" role="alert">
+		<strong>
+			No se pudo editar al cliente:
+		</strong>
+		<div>
+			@TempData["Error"]
+		</div>
+	</div>
+}
+
+<form asp-action="Edit" method="post">
+	<div class="form-group">
+		<label asp-for="TipoDocumento">Tipo Documento</label>
+		<input asp-for="TipoDocumento" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="NumeroDocumento">Numero Documento</label>
+		<input asp-for="NumeroDocumento" type="number" class="form-control" disabled>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="NombreCompleto">Nombre Completo</label>
+		<input asp-for="NombreCompleto" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="TelefonoResidencia">Telefono Residencia</label>
+		<input asp-for="TelefonoResidencia" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="TelefonoCelular">Telefono Celular</label>
+		<input asp-for="TelefonoCelular" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Direccion">Direccion</label>
+		<input asp-for="Direccion" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="CiudadResidencia">Ciudad Residencia</label>
+		<input asp-for="CiudadResidencia" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Departamento">Departamento</label>
+		<input asp-for="Departamento" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Pais">Pais</label>
+		<input asp-for="Pais" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Profesion">Profesion</label>
+		<input asp-for="Profesion" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Email">Email</label>
+		<input asp-for="Email" type="email" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="Nit">Nit</label>
+		<input asp-for="Nit" type="text" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label asp-for="IdTipoCliente">Tipo Cliente</label>
+		<select class="form-control" asp-for="IdTipoCliente">
+			@foreach (var item in ViewBag.TiposCliente)
+			{
+				<option value="@item.Id">@item.Nombre</option>
+			}
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label asp-for="IdUsuario">Usuario</label>
+		<select class="form-control" asp-for="IdUsuario">
+			@foreach (var item in ViewBag.Usuarios)
+			{
+				<option value="@item.Id">@item.Usuario</option>
+			}
+		</select>
+	</div>
+
+	<button type="submit" class="btn btn-primary mt-4">Guardar Cambios</button>
+</form>

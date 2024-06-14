@@ -66,21 +66,29 @@ namespace ProyectoDB2.Controllers
 		{
 			var cliente = GetCliente(id);
 			if (cliente is null) return NotFound();
-			return View();
+			ViewBag.TiposCliente = ObtieneTiposCliente();
+			ViewBag.Usuarios = Usuarios();
+			return View(cliente);
 		}
 
 		// POST: Cliente/Edit/5
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
+		public ActionResult Edit(int id, ClienteDTO cliente)
 		{
 			try
 			{
+				_context.Database.ExecuteSqlRaw("exec SP_ActualizarCliente @p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13",
+															id, cliente.TipoDocumento, cliente.NombreCompleto, cliente.TelefonoResidencia, cliente.TelefonoCelular, cliente.Direccion, cliente.CiudadResidencia, cliente.Departamento, cliente.Pais, cliente.Profesion, cliente.Email, cliente.IdTipoCliente, cliente.IdUsuario, cliente.Nit);
+
 				return RedirectToAction(nameof(Index));
 			}
-			catch
+			catch (Exception ex)
 			{
-				return View();
+				TempData["Error"] = ex.Message;
+				ViewBag.TiposCliente = ObtieneTiposCliente();
+				ViewBag.Usuarios = Usuarios();
+				return View(cliente);
 			}
 		}
 
