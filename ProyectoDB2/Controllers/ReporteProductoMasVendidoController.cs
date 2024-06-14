@@ -11,9 +11,9 @@ namespace ProyectoDB2.Controllers
     public class ReporteProductoMasVendidoController : Controller
     {
        
-            private readonly ApplicationDbContext _context;
+            private readonly ReportsDbContext _context;
 
-            public ReporteProductoMasVendidoController(ApplicationDbContext dbContext)
+            public ReporteProductoMasVendidoController(ReportsDbContext dbContext)
             {
                 _context = dbContext;
             }

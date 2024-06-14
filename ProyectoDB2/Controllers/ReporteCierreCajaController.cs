@@ -10,9 +10,9 @@ namespace ProyectoDB2.Controllers
     [Authorize (Roles ="1")]
     public class ReporteCierreCajaController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ReportsDbContext _context;
 
-        public ReporteCierreCajaController(ApplicationDbContext dbContext)
+        public ReporteCierreCajaController(ReportsDbContext dbContext)
         {
             _context = dbContext;
         }

@@ -9,9 +9,9 @@ namespace ProyectoDB2.Controllers
     [Authorize(Roles = "1")]
     public class ReporteCompraPorClienteController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ReportsDbContext _context;
 
-        public ReporteCompraPorClienteController(ApplicationDbContext dbContext)
+        public ReporteCompraPorClienteController(ReportsDbContext dbContext)
         {
             _context = dbContext;
         }

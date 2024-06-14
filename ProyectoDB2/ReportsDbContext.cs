@@ -23,6 +23,8 @@ namespace ProyectoDB2
 			modelBuilder.Entity<UsuarioDTO>().HasNoKey();
 			modelBuilder.Entity<ReporteVentaDiariaDTO>().HasNoKey();
 			modelBuilder.Entity<ReporteProductoMasVendidoDTO>().HasNoKey();
-		}
+            modelBuilder.Entity<ReporteCierreCajaDTO>().HasNoKey();
+            modelBuilder.Entity<ReporteCompraPorClienteDTO>().HasNoKey();
+        }
 	}
 }
