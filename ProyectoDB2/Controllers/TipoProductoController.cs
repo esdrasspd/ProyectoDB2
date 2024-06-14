@@ -41,8 +41,10 @@ namespace ProyectoDB2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(IFormCollection collection)
         {
+            var Nombre = collection["Nombre"];
             try
             {
+                _context.Database.ExecuteSqlRaw("exec sp_AgregarTipoProducto @p0", Nombre);
                 return RedirectToAction(nameof(Index));
             }
             catch
