@@ -21,6 +21,7 @@ namespace ProyectoDB2
         {
             modelBuilder.Entity<TipoProductoDTO>().HasNoKey();
             modelBuilder.Entity<ProductModelSP>().HasKey(p => p.Referencia); // Configurar Referencia como clave primaria
+            modelBuilder.Entity<TipoClienteDTO>().HasNoKey();
         }
 
         public void RegisterUser(string userName, string password, int rol)
