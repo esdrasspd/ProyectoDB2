@@ -1,0 +1,22 @@
+﻿@using ProyectoDB2.DTOs
+@model AdministradorDTO
+
+@{
+    ViewData["Title"] = "Detalles de Adminitrador ";
+}
+
+<div class="container">
+    <h1>Detalles de Administrador</h1>
+    <dl class="row">
+        <dt class="col-sm-3">Id:</dt>
+        <dd class="col-sm-9">@Model.Id</dd>
+
+        <dt class="col-sm-3">Nombre:</dt>
+        <dd class="col-sm-9">@Model.Nombre</dd>
+
+        <dt class="col-sm-3">Username:</dt>
+        <dd class="col-sm-9">@Model.Username</dd>
+
+    </dl>
+    <a asp-action="Index" class="btn btn-primary">Volver a la Lista</a>
+</div>
