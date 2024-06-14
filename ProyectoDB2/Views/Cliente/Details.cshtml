@@ -1,0 +1,92 @@
+﻿@using ProyectoDB2.DTOs
+@model ClienteDTO
+
+@{
+	ViewData["Title"] = "Cliente";
+}
+
+<h1 class="my-3">Detalles Cliente</h1>
+
+@* Tipo Documento *@
+<div>
+	<strong>Tipo de Documento</strong>
+	<div>@Model.TipoDocumento</div>
+</div>
+
+@* Numero Documento *@
+<div>
+	<strong>Numero de Documento</strong>
+	<div>@Model.NumeroDocumento</div>
+</div>
+
+@* Nombre Completo *@
+<div>
+	<strong>Nombre Completo</strong>
+	<div>@Model.NombreCompleto</div>
+</div>
+
+@* TelefonoResidencia *@
+<div>
+	<strong>Telefono de Residencia</strong>
+	<div>@Model.TelefonoResidencia</div>
+</div>
+
+@* TelefonoCelular *@
+<div>
+	<strong>Telefono Celular</strong>
+	<div>@Model.TelefonoCelular</div>
+</div>
+
+@* Direccion *@
+<div>
+	<strong>Direccion</strong>
+	<div>@Model.Direccion</div>
+</div>
+
+@* CiudadResidencia *@
+<div>
+	<strong>Ciudad de Residencia</strong>
+	<div>@Model.CiudadResidencia</div>
+</div>
+
+@* Departamento *@
+<div>
+	<strong>Departamento</strong>
+	<div>@Model.Departamento</div>
+</div>
+
+@* Pais *@
+<div>
+	<strong>Pais</strong>
+	<div>@Model.Pais</div>
+</div>
+
+@* Profesion *@
+<div>
+	<strong>Profesion</strong>
+	<div>@Model.Profesion</div>
+</div>
+
+@* Email *@
+<div>
+	<strong>Email</strong>
+	<div>@Model.Email</div>
+</div>
+
+@* Nit *@
+<div>
+	<strong>Nit</strong>
+	<div>@Model.Nit</div>
+</div>
+
+@* NombreTipoCliente *@
+<div>
+	<strong>Nombre Tipo Cliente</strong>
+	<div>@Model.NombreTipoCliente</div>
+</div>
+
+@* Usuario *@
+<div>
+	<strong>Usuario</strong>
+	<div>@Model.Username</div>
+</div>
