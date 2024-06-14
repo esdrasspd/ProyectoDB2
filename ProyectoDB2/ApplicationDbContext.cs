@@ -24,6 +24,7 @@ namespace ProyectoDB2
             modelBuilder.Entity<ProductoDTO>().Property(p => p.Precio)
                 .HasColumnType("money");
             modelBuilder.Entity<ProductModelSP>().HasKey(p => p.Referencia); // Configurar Referencia como clave primaria
+            modelBuilder.Entity<TipoClienteDTO>().HasNoKey();
         }
 
         public void RegisterUser(string userName, string password, int rol)
