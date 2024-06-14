@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProyectoDB2.DTOs;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace ProyectoDB2.Controllers
 {
@@ -75,7 +76,8 @@ namespace ProyectoDB2.Controllers
         // GET: TipoClienteController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var query = _context.Set<TipoClienteDTO>().FromSqlRaw("exec sp_ConsultarTipoCliente @p0", id).ToList();
+            return View(query[0]);
         }
 
         // POST: TipoClienteController/Delete/5
@@ -86,12 +88,14 @@ namespace ProyectoDB2.Controllers
             var ids = collection["Id"];
             try
             {
-                _context.Database.ExecuteSqlRaw("exec SP_EliminarTipoCliente @p0", ids);
+                _context.Database.ExecuteSqlRaw("exec SP_EliminarTipoCliente @p0", id);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex) 
             {
-                return View();
+                TempData["Error"] = ex.Message;
+                var tipoCliente = _context.Set<TipoClienteDTO>().FromSqlRaw("exec sp_ConsultarTipoCliente @p0", id).ToList();
+                return View(tipoCliente);
             }
         }
     }

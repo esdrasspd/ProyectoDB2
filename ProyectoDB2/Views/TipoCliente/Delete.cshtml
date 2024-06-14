@@ -1,18 +1,18 @@
 ﻿@using ProyectoDB2.DTOs
-@model TipoProductoDTO
+@model TipoClienteDTO
 
 @{
-    ViewData["Title"] = "Eliminar Tipo de Producto";
+    ViewData["Title"] = "Eliminar";
 }
 
-<h1>Eliminar Tipo de Producto</h1>
+<h1>Eliminar Tipo de Cliente</h1>
 
 <div>
-    <h3>¿Está seguro que desea eliminar el tipo de producto '@Model.Nombre'?</h3>
-    <form asp-controller="TipoProducto" asp-action="Delete">
+    <h3>¿Está seguro que desea eliminar el tipo de Cliente '@Model.Nombre'?</h3>
+    <form asp-controller="TipoCliente" asp-action="Delete">
         <div class="form-group">
             <input type="submit" value="Eliminar" class="btn btn-danger" />
-            <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            <a class="btn btn-secondary" href="@Url.Action("Index", "TipoCliente")">Cancelar</a>
         </div>
     </form>
 </div>
