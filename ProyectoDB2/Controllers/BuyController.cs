@@ -11,18 +11,23 @@ namespace ProyectoDB2.Controllers
     {
         private readonly BuyServices _buyServices;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly ApplicationDbContext _context;
 
-        public BuyController(BuyServices buyServices, IHttpContextAccessor httpContextAccessor)
+        public BuyController(BuyServices buyServices, IHttpContextAccessor httpContextAccessor, ApplicationDbContext context)
         {
             _buyServices = buyServices;
             _httpContextAccessor = httpContextAccessor;
+            _context = context;
         }
 
         [HttpPost]
 
         public IActionResult BuyProcess(BuyModel request)
         {
-            request.NumeroDocumentoCliente = 987654321;
+            var username = _httpContextAccessor.HttpContext.Session.GetString("UsernameClient");
+            var user = _context.Usuario.FirstOrDefault(u => u.Username == username);
+            var cliente = _context.Cliente.FirstOrDefault(c => c.IdUsuario == user.Id);
+            request.NumeroDocumentoCliente = cliente.NumeroDocumento;
             bool okBuy = ProcessBuy(request);
             return Json(new { success = okBuy });
 

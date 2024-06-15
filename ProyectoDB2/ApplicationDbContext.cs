@@ -14,11 +14,13 @@ namespace ProyectoDB2
         {
         }
 
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
         public DbSet<ProductModelSP> Productos { get; set; }
+        public DbSet<Cliente> Cliente { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Cliente>().HasKey(c => c.NumeroDocumento);
             modelBuilder.Entity<TipoProductoDTO>().HasNoKey();
 			modelBuilder.Entity<ProductoDTO>().HasNoKey();
             modelBuilder.Entity<ClienteDTO>().HasNoKey();
